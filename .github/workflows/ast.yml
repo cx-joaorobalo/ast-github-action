@@ -1,0 +1,21 @@
+name: Checkmarx AST Scan
+on:
+  push:
+    branches:
+      - main
+      - master
+      - dev
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Checkmarx AST CLI Action
+        uses: checkmarx/ast-github-action@main #Github Action version
+        with:
+          project_name: cx-joaorobalo/astlab2
+          cx_tenant: joao_robalo_gst
+          base_uri: https://deu.ast.checkmarx.net
+          cx_client_id: ${{ secrets.CLIENT_ID }}
+          cx_client_secret: ${{ secrets.SECRET }}
